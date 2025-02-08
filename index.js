@@ -11,7 +11,7 @@ client.on('ready', async () => {
 client.on('messageCreate', async (message) => {
   if (message.author.id !== client.user.id) return; // Ensure the bot only responds to its own commands
 
-  if (message.content === '!readall') {
+  if (message.content === 'hello all!') {
     try {
       let allMessages = [];
       let lastMessageId = null;
@@ -31,10 +31,11 @@ client.on('messageCreate', async (message) => {
       const { analyzeChatHistory } = require('./openapiCaller');
       await analyzeChatHistory();
       
-      message.channel.send('All messages saved and analyzed.');
+      // message.channel.send('All messages saved and analyzed.');
     } catch (error) {
       console.error('Error fetching messages:', error);
-      message.channel.send('Failed to fetch or analyze messages.');
+      console.log('AFailed to fetch or analyze messages');
+      // message.channel.send('Failed to fetch or analyze messages.');
     }
   }
 });

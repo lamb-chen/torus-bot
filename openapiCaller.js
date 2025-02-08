@@ -28,11 +28,15 @@ async function analyzeChatHistory() {
         }
         
         const data = await response.json();
-        console.log("Common Themes:", data.choices[0].message.content);
+        const themes = data.choices[0].message.content;
+        
+        fs.writeFileSync('themes.txt', themes, 'utf8');
+        console.log("Common themes saved to themes.txt");
     } catch (error) {
         console.error("Error processing chat history:", error);
     }
 }
+
 
 analyzeChatHistory();
 
