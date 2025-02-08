@@ -4,7 +4,7 @@ A Discord selfbot that scrapes chat history from discord server channels to prov
 
 ## Description
 
-Add in-depth paragraph about the project and overview of use.
+This Discord selfbot unlocks the understanding of community dynamics and trends across Discord servers, which is crucial for ecosystem growth. By collecting and analysing community interactions, it generates valuable insights about activity patterns, influential members, and cross-community collaborations. 
 
 ## Getting Started
 
