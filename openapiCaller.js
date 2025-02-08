@@ -35,3 +35,6 @@ async function analyzeChatHistory() {
 }
 
 analyzeChatHistory();
+
+// Export the function
+module.exports = { analyzeChatHistory };

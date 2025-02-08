@@ -26,10 +26,15 @@ client.on('messageCreate', async (message) => {
       
       fs.writeFileSync('messages.json', JSON.stringify(allMessages, null, 2));
       console.log('All messages saved to messages.json');
-      message.channel.send('All messages saved to JSON file.');
+      
+      // Import and call the analyzeChatHistory function
+      const { analyzeChatHistory } = require('./openapiCaller');
+      await analyzeChatHistory();
+      
+      message.channel.send('All messages saved and analyzed.');
     } catch (error) {
       console.error('Error fetching messages:', error);
-      message.channel.send('Failed to fetch messages.');
+      message.channel.send('Failed to fetch or analyze messages.');
     }
   }
 });
