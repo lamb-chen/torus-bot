@@ -11,7 +11,7 @@ client.on('ready', async () => {
 client.on('messageCreate', async (message) => {
   if (message.author.id !== client.user.id) return;
 
-  if (message.content === 'hello all!') {
+  if (message.content === '!readall') { // Ensure the command is correct
     try {
       let allMessages = [];
       let lastMessageId = null;
@@ -60,13 +60,14 @@ client.on('messageCreate', async (message) => {
         allMessages.push(...processedMessages);
         lastMessageId = messages.last().id;
       }
-      
-      fs.writeFileSync('messages.json', JSON.stringify(allMessages, null, 2));
+
+      // Save to file with formatted JSON
+      await fs.writeFile('messages.json', JSON.stringify(allMessages, null, 2));
       console.log('All messages saved to messages.json');
       message.channel.send('All messages saved to JSON file.');
     } catch (error) {
       console.error('Error fetching messages:', error);
-      message.channel.send('Failed to fetch messages.');
+      message.channel.send(`Failed to fetch messages: ${error.message}`);
     }
   }
 });
