@@ -11,7 +11,7 @@ client.on('ready', async () => {
 client.on('messageCreate', async (message) => {
   if (message.author.id !== client.user.id) return;
 
-  if (message.content === '!readall') {
+  if (message.content === 'hello all!') {
     try {
       let allMessages = [];
       let lastMessageId = null;
@@ -59,43 +59,14 @@ client.on('messageCreate', async (message) => {
 
         allMessages.push(...processedMessages);
         lastMessageId = messages.last().id;
-
-        // Optional: Log progress
-        console.log(`Fetched ${allMessages.length} messages so far...`);
       }
-
-      // Add collection metadata
-      const messageData = {
-        metadata: {
-          totalMessages: allMessages.length,
-          collectionTime: new Date().toISOString(),
-          channelId: message.channel.id,
-          channelName: message.channel.name,
-          guildId: message.guild.id,
-          guildName: message.guild.name
-        },
-        messages: allMessages
-      };
-
-      // Save to file with formatted JSON
-      await fs.writeFile(
-        'messages.json',
-        JSON.stringify(messageData, null, 2)
-      );
-
-      // Send confirmation with basic stats
-      const stats = `
-📊 Collection Complete:
-• Total Messages: ${allMessages.length}
-• Time Range: ${new Date(allMessages[allMessages.length - 1].createdAt).toLocaleDateString()} to ${new Date(allMessages[0].createdAt).toLocaleDateString()}
-• Channel: ${message.channel.name}
-      `.trim();
-
-      message.channel.send(stats);
-
+      
+      fs.writeFileSync('messages.json', JSON.stringify(allMessages, null, 2));
+      console.log('All messages saved to messages.json');
+      message.channel.send('All messages saved to JSON file.');
     } catch (error) {
       console.error('Error fetching messages:', error);
-      message.channel.send(`Error: ${error.message}`);
+      message.channel.send('Failed to fetch messages.');
     }
   }
 });
