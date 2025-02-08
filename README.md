@@ -14,7 +14,7 @@ Require node.js
 ```npm install openai```    
 ```npm install node-fetch```           
 ```npm install dotenv```    
-
+```npm install express```
 Need to set up own .env file with your selfbot Discord token and an Open API Key (topped up balance).  
 
 ### Executing program
