@@ -1,4 +1,4 @@
-# Project Setup
+# Torus Community Insights Generator Setup
 
 ## Install these dependencies
 Require node.js
